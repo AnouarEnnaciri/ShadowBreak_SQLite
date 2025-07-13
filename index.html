@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anouar | Python Web Tools</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header class="intro">
+    <h1>Hello, I’m <span class="blue">Anouar.</span></h1>
+    <p><span id="typed"></span></p>
+    <a href="#projects" class="btn">View my work ↓</a>
+  </header>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <div class="about-content">
+   <img src="icons/avatar.svg" alt="Avatar" class="avatar" />
+      <p>
+        I’m a self-taught Python developer and student under <strong>EMSI College Morocco</strong> focused on building real tools that solve real-world problems.<br>
+        I enjoy extracting insights from the web and automating workflows with precision.<br>
+        Tech stack I'm learning and using includes:
+      </p>
+      <div class="skills-grid">
+        <div class="skill"><img src="icons/python.svg" alt="Python">PYTHON</div>
+        <div class="skill"><img src="icons/html.svg" alt="HTML">HTML</div>
+        <div class="skill"><img src="icons/css.svg" alt="CSS">CSS</div>
+        <div class="skill"><img src="icons/sql.svg" alt="SQL">SQL</div>
+        <div class="skill"><img src="icons/git.svg" alt="Git">GIT</div>
+        <div class="skill"><img src="icons/flask.svg" alt="Flask">FLASK</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Have a question or want to work together? Leave your details and I’ll get back to you as soon as possible.</p>
+    <form action="mailto:anouar_pytech@hotmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="Name" placeholder="Name" required />
+      <input type="email" name="Email" placeholder="Email" required />
+      <textarea name="Message" placeholder="Message" required></textarea>
+      <button type="submit">SUBMIT</button>
+    </form>
+  </section>
+
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80
+        },
+        "color": {
+          "value": "#007BFF"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.5
+        },
+        "size": {
+          "value": 3
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#007BFF",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3
+        }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    new Typed("#typed", {
+      strings: ["I build real tools with Python.", "I automate data scraping.", "I extract real-world insights."],
+      typeSpeed: 45,
+      backSpeed: 25,
+      loop: true
+    });
+  </script>
+</body>
+</html>
