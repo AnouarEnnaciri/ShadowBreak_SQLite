@@ -1,24 +1,24 @@
 # ShadowBreak_SQLite
 
-A simple project where I scraped articles (titles and links) from WeLoveBuzz and saved them into a local SQLite database.
+Petit projet où je récupère les titres et liens d’articles depuis WeLoveBuzz, puis je les enregistre dans une base de données SQLite locale.
 
-This version is an upgrade of the original CSV version — now using a proper table with duplicate checking and everything stored in a `.db` file.
+C’est une amélioration de la version précédente qui utilisait un fichier CSV. Ici, les données sont mieux structurées dans une vraie base `.db`, et les doublons sont automatiquement ignorés.
 
-## What It Does
+## Ce que ça fait
 
-- Scrapes article titles and URLs from the homepage
-- Saves them into a `SQLite` database (`articles.db`)
-- Skips duplicates using the `url` as a unique field
-- Shows how many new articles were added
+- Récupère les titres + liens d’articles depuis la page d’accueil
+- Enregistre le tout dans une base de données SQLite (`articles.db`)
+- Ignore les doublons grâce au champ `url` en unique
+- Affiche combien d’articles ont été ajoutés
 
-## Files
+## Fichiers
 
-- `scrape.py` → The main script
-- `requirements.txt` → Dependencies used
-- `.gitignore` → Excludes `.db` and virtualenv
-- `articles.db` → Auto-generated when you run the script
+- `scrape.py` → Script principal
+- `requirements.txt` → Les bibliothèques utilisées
+- `.gitignore` → Exclut le `.db` et le dossier `venv`
+- `articles.db` → Généré automatiquement en lançant le script
 
-## How To Run
+## Comment lancer
 
 ```bash
 pip install -r requirements.txt
