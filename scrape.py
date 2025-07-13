@@ -1,34 +1,40 @@
-import undetected_chromedriver as uc
+import requests
 from bs4 import BeautifulSoup
-import csv
-import time
-import random
+import sqlite3
 
-options = uc.ChromeOptions()
-options.add_argument("--headless")
-options.add_argument("--disable-blink-features=AutomationControlled")
+# Setup DB
+conn = sqlite3.connect("articles.db")
+cursor = conn.cursor()
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS articles (
+    title TEXT,
+    url TEXT UNIQUE
+)
+""")
+conn.commit()
 
-driver = uc.Chrome(options=options)
-driver.get("https://www.welovebuzz.com")
-time.sleep(random.uniform(3, 5))
+# Scrape
+url = "https://www.welovebuzz.com/"
+headers = {"User-Agent": "Mozilla/5.0"}
 
-soup = BeautifulSoup(driver.page_source, "html.parser")
-articles = soup.select("article")
+response = requests.get(url, headers=headers)
+soup = BeautifulSoup(response.text, "html.parser")
 
-with open("welovebuzz_articles.csv", "w", newline="", encoding="utf-8-sig") as f:
-    writer = csv.writer(f)
-    writer.writerow(["Title", "Link"])
+articles = soup.select("h2 a")  # Adjust this if needed
 
-    for article in articles:
-        h2 = article.find("h2")
-        a = h2.find("a") if h2 else None
-        if a:
-            title = a.get_text(strip=True)
-            link = a['href']
-            writer.writerow([title, link])
-            print(f"[✓] {title} → {link}")
+count = 0
+for a in articles:
+    title = a.get_text(strip=True)
+    link = a.get("href")
 
-try:
-    driver.quit()
-except:
-    pass
+    if title and link:
+        try:
+            cursor.execute("INSERT INTO articles (title, url) VALUES (?, ?)", (title, link))
+            count += 1
+        except sqlite3.IntegrityError:
+            continue  # Skip duplicates
+
+conn.commit()
+conn.close()
+
+print(f"✅ Scraped and inserted {count} new articles into articles.db")

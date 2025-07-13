@@ -1,23 +1,25 @@
-# WebScraper – ShadowBreak
+# ShadowBreak_SQLite
 
-Un petit scraper Python qui récupère les titres et les liens d’articles depuis **WeLoveBuzz**, et les enregistre dans un fichier CSV.
+A simple project where I scraped articles (titles and links) from WeLoveBuzz and saved them into a local SQLite database.
 
-## Fonctionnalités
+This version is an upgrade of the original CSV version — now using a proper table with duplicate checking and everything stored in a `.db` file.
 
-- Contourne les protections simples anti-bot (via Chrome non-détecté)
-- Récupère les titres + liens des articles récents
-- Enregistre dans `samples/welovebuzz_articles.csv`
-- Affiche un résumé propre dans le terminal
+## What It Does
 
-## Installation rapide
+- Scrapes article titles and URLs from the homepage
+- Saves them into a `SQLite` database (`articles.db`)
+- Skips duplicates using the `url` as a unique field
+- Shows how many new articles were added
+
+## Files
+
+- `scrape.py` → The main script
+- `requirements.txt` → Dependencies used
+- `.gitignore` → Excludes `.db` and virtualenv
+- `articles.db` → Auto-generated when you run the script
+
+## How To Run
 
 ```bash
-git clone https://github.com/ton_utilisateur/projectscrape3_shadowbreak.git
-cd projectscrape3_shadowbreak
-python -m venv .venv
-.\.venv\Scripts\activate
 pip install -r requirements.txt
-```
-## Lancement
-```bash
 python scrape.py
